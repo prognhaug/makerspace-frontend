@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Button from "@/components/ui/Button"; // Import the Button component
 
 export default function Header() {
   return (
@@ -6,10 +7,10 @@ export default function Header() {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           <Link href="/" className="text-2xl font-bold">
-            Jæren Makerspace
+            JÆREN MAKERSPACE
           </Link>
           <nav>
-            <ul className="flex space-x-6">
+            <ul className="flex space-x-6 items-center">
               <li>
                 <Link href="/">Hjem</Link>
               </li>
@@ -26,7 +27,15 @@ export default function Header() {
                 <Link href="/meld-interesse">Meld interesse</Link>
               </li>
               <li>
-                <Link href="/ta-kontakt">Ta kontakt</Link>
+                <Link href="/ta-kontakt" className="inline-block">
+                  <Button
+                    variant="default"
+                    size="sm"
+                    className="cursor-pointer"
+                  >
+                    Ta kontakt
+                  </Button>
+                </Link>
               </li>
             </ul>
           </nav>
