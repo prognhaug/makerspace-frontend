@@ -41,7 +41,7 @@ export default function Footer() {
                 Makerspace
               </Link>
               <Link
-                href="/events"
+                href="/arrangementer"
                 className="uppercase font-medium hover:text-primary"
               >
                 Events
