@@ -52,6 +52,63 @@ export default function EditLandingPage() {
     fetchContent();
   }, []);
 
+  const handleAddSection = () => {
+    if (!content) return;
+
+    // Generate a unique ID
+    const newId = `section-${Date.now()}`;
+
+    // Create a new section with default values
+    const newSection: Section = {
+      id: newId,
+      title: "Ny seksjon",
+      content: "Legg til innhold her...",
+    };
+
+    // Add the new section to the content
+    setContent({
+      ...content,
+      sections: [...content.sections, newSection],
+    });
+
+    // Show success toast
+    toast.success("Ny seksjon lagt til");
+
+    // Ensure we're in edit mode
+    if (!isEditing) {
+      setIsEditing(true);
+    }
+  };
+
+  const handleRemoveSection = (sectionId: string) => {
+    if (!content) return;
+
+    // Filter out the section with the matching ID
+    setContent({
+      ...content,
+      sections: content.sections.filter((section) => section.id !== sectionId),
+    });
+
+    toast.success("Seksjon fjernet");
+  };
+
+  const handleInputFocus = (
+    sectionId: string,
+    field: string,
+    value: string
+  ) => {
+    if (!content) return;
+
+    // Check if the content is the default text
+    if (
+      (field === "title" && value === "Ny seksjon") ||
+      (field === "content" && value === "Legg til innhold her...")
+    ) {
+      // Clear the default text when focused
+      handleContentChange(sectionId, field, "");
+    }
+  };
+
   const handleSave = async () => {
     setIsSaving(true);
     const loadingToast = toast.loading("Lagrer innhold...");
@@ -205,12 +262,63 @@ export default function EditLandingPage() {
         </div>
 
         {/* Preview/Edit Content Sections */}
-        <h2 className="text-h3 font-bold mb-4 text-text">Seksjoner</h2>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-h3 font-bold text-text">Seksjoner</h2>
+          {isEditing && (
+            <Button
+              onClick={handleAddSection}
+              variant="outline"
+              className="flex items-center gap-2"
+              size="sm"
+            >
+              <span>Legg til seksjon</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+            </Button>
+          )}
+        </div>
+
         {content.sections.map((section) => (
           <div
             key={section.id}
-            className="mb-8 p-6 border rounded-lg text-text"
+            className="mb-8 p-6 border rounded-lg text-text relative"
           >
+            {isEditing && (
+              <button
+                onClick={() => handleRemoveSection(section.id)}
+                className="absolute top-3 right-3 text-red-500 p-1 rounded-full hover:bg-red-50"
+                title="Fjern seksjon"
+                type="button"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                  <line x1="10" y1="11" x2="10" y2="17" />
+                  <line x1="14" y1="11" x2="14" y2="17" />
+                </svg>
+              </button>
+            )}
+
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Seksjon tittel
@@ -222,6 +330,9 @@ export default function EditLandingPage() {
                   value={section.title}
                   onChange={(e) =>
                     handleContentChange(section.id, "title", e.target.value)
+                  }
+                  onFocus={() =>
+                    handleInputFocus(section.id, "title", section.title)
                   }
                 />
               ) : (
@@ -241,6 +352,9 @@ export default function EditLandingPage() {
                   onChange={(e) =>
                     handleContentChange(section.id, "content", e.target.value)
                   }
+                  onFocus={() =>
+                    handleInputFocus(section.id, "content", section.content)
+                  }
                 />
               ) : (
                 <p className="text-p1">{section.content}</p>
@@ -248,6 +362,32 @@ export default function EditLandingPage() {
             </div>
           </div>
         ))}
+
+        {/* Show 'Add first section' button if no sections exist */}
+        {content.sections.length === 0 && isEditing && (
+          <div className="flex justify-center my-8 p-6 border border-dashed rounded-lg">
+            <Button
+              onClick={handleAddSection}
+              variant="outline"
+              className="flex items-center gap-2"
+            >
+              <span>Legg til din første seksjon</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
