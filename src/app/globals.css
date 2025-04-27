@@ -17,6 +17,71 @@
   }
 }
 
+@theme {
+  --font-display: "Satoshi", "sans-serif";
+  --breakpoint-3xl: 120rem;
+
+  /* Typography */
+  --font-poppins: Poppins, sans-serif;
+  --font-work-sans: Work Sans, sans-serif;
+
+  /* Font sizes with their properties */
+  --font-size-h1: 70px;
+  --line-height-h1: 1.1;
+  --font-weight-h1: 600;
+
+  --font-size-h2: 50px;
+  --line-height-h2: 1.2;
+  --font-weight-h2: 500;
+
+  --font-size-h3: 25px;
+  --line-height-h3: 1.3;
+  --font-weight-h3: 500;
+
+  --font-size-p1: 15px;
+  --line-height-p1: 1.5;
+  --font-weight-p1: 400;
+
+  --font-size-p2: 16px;
+  --line-height-p2: 1.5;
+  --font-weight-p2: 600;
+
+  --font-size-label: 15px;
+  --line-height-label: 1.4;
+  --font-weight-label: 500;
+
+  /* Primary colors */
+  --color-primary: #a77f3a;
+  --color-primary-brown: #a77f3a;
+  --color-primary-medium: #ac8969;
+  --color-primary-light: #d0bba8;
+  --color-primary-lighter: #e4d7cb;
+  --color-primary-warm: #e5ceb8;
+  --color-primary-pale: #eddfc7;
+  --color-primary-faint: #f4eee7;
+
+  /* Neutral colors */
+  --color-neutral-black: #000000;
+  --color-neutral-dark: #2b2a29;
+  --color-neutral-medium: #5a5a5a;
+  --color-neutral-gray: #a3a3a3;
+  --color-neutral-light: #dddddd;
+  --color-neutral-pale: #f5f6f7;
+  --color-neutral-white: #ffffff;
+
+  /* Secondary colors */
+  --color-secondary-green: #59765b;
+  --color-secondary-brown: #ac8969;
+  --color-secondary-dark: #403625;
+  --color-secondary-sand: #e5ceb8;
+  --color-secondary-beige: #efe4d7;
+  --color-secondary-gold: #a77f3a;
+  --color-secondary-yellow: #e4b763;
+
+  /* Text color */
+  --color-text: #181212;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

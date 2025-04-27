@@ -9,6 +9,8 @@ module.exports = {
       fontFamily: {
         sans: ["var(--font-geist-sans)"],
         mono: ["var(--font-geist-mono)"],
+        poppins: ["Poppins", "sans-serif"],
+        "work-sans": ["Work Sans", "sans-serif"],
       },
     },
   },
