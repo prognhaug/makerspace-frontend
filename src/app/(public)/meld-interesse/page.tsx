@@ -4,6 +4,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/forms/Input";
+import { toast } from "react-hot-toast";
 
 type FormData = {
   name: string;
@@ -32,7 +33,7 @@ export default function ExpressInterest() {
       reset();
 
       // Show success message
-      alert("Takk for din interesse!");
+      toast.success("Takk for din interesse!");
     } catch (error) {
       console.error("Error submitting form:", error);
       setError("name", {

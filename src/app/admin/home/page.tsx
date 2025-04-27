@@ -129,7 +129,7 @@ export default function EditLandingPage() {
     } catch (error) {
       toast.dismiss(loadingToast);
       console.error("Failed to save content:", error);
-      alert("Kunne ikke lagre innhold. Prøv igjen senere.");
+      toast.error("Kunne ikke lagre innhold. Prøv igjen senere.");
     } finally {
       setIsSaving(false);
     }
