@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Button from "@/components/ui/Button";
+import toast from "react-hot-toast";
 
 type Section = {
   id: string;
@@ -53,6 +54,7 @@ export default function EditLandingPage() {
 
   const handleSave = async () => {
     setIsSaving(true);
+    const loadingToast = toast.loading("Lagrer innhold...");
     try {
       const response = await fetch("/api/admin/mock", {
         method: "POST",
@@ -64,9 +66,11 @@ export default function EditLandingPage() {
 
       if (!response.ok) throw new Error("Failed to save");
 
-      alert("Innhold lagret!");
+      toast.dismiss(loadingToast);
+      toast.success("Innhold lagret!");
       setIsEditing(false);
     } catch (error) {
+      toast.dismiss(loadingToast);
       console.error("Failed to save content:", error);
       alert("Kunne ikke lagre innhold. Prøv igjen senere.");
     } finally {
