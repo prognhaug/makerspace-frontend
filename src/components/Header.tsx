@@ -6,8 +6,15 @@ import Button from "@/components/ui/Button";
 import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
   return (
-    <header className="font-poppins w-full bg-primary-faint text-text py-4">
+    <header
+      className={`font-poppins w-full text-text py-4 ${
+        isHomePage ? "bg-secondary-beige" : "bg-primary-faint"
+      }`}
+    >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           <Link href="/" className="flex items-center space-x-3">
@@ -35,7 +42,7 @@ export default function Header() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="cursor-pointer"
+                    className="cursor-pointer w-[120.44px] h-[34.66px] px-0"
                   >
                     Ta kontakt
                   </Button>
