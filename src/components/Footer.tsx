@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="w-full bg-gray-800 text-white py-8 mt-12">
+    <footer className="font-poppins w-full bg-primary-faint text-text py-8 mt-12">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between">
           <div>
