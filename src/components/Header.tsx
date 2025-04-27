@@ -25,7 +25,7 @@ export default function Header() {
               height={50}
               className="rounded-full"
             />
-            <span className="text-xl font-bold uppercase">
+            <span className="text-size-h3 font-bold uppercase">
               Jæren Makerspace
             </span>
           </Link>
