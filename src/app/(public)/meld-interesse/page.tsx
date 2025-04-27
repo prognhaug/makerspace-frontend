@@ -18,7 +18,7 @@ export default function ExpressInterest() {
     reset,
     setError,
   } = useForm<FormData>({
-    mode: "onTouched", // This triggers validation on blur
+    mode: "onTouched",
   });
 
   const onSubmit = async (data: FormData) => {
