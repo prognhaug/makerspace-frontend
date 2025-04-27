@@ -1,0 +1,24 @@
+{
+  "hero": {
+    "title": "Jæren Makerspace",
+    "subtitle": "Et fellesskap for skapende mennesker",
+    "description": "Vi i Jæren Makerspace gleder oss til å åpne dørene. Vi ønsker å skape et inkluderende og kreativt samlingspunkt for teknologi, håndverk og læring. Gjennom våren vil vi dele spennende nyheter, arrangementer og glimt av alt som venter. Følg med!"
+  },
+  "sections": [
+    {
+      "id": "about",
+      "title": "Om oss",
+      "content": "Jæren Makerspace er et fellesskap av maker-entusiaster som deler ressurser, kunnskap og ideer. Vi ønsker å skape et miljø hvor folk kan lære, eksperimentere og bygge sammen."
+    },
+    {
+      "id": "facilities",
+      "title": "Våre fasiliteter",
+      "content": "Vi har et bredt utvalg av verktøy og maskiner, inkludert 3D-printere, laserkuttere, CNC-maskiner, elektronikkbenker, og mye mer."
+    },
+    {
+      "id": "membership",
+      "title": "Medlemskap",
+      "content": "Bli medlem i dag for å få tilgang til alle våre fasiliteter og bli en del av et kreativt fellesskap."
+    }
+  ]
+}
