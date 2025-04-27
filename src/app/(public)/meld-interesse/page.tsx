@@ -35,19 +35,12 @@ export default function ExpressInterest() {
       alert("Takk for din interesse!");
     } catch (error) {
       console.error("Error submitting form:", error);
-
-      // Example of setting a form error manually
       setError("name", {
         type: "manual",
         message: "Det oppstod en feil. Prøv igjen senere.",
       });
     }
   };
-
-  // For testing - uncomment to see errors immediately
-  // React.useEffect(() => {
-  //   setError("name", { type: "manual", message: "Test error message" });
-  // }, [setError]);
 
   return (
     <div className="min-h-screen bg-primary-faint py-16 px-4">
