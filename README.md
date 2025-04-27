@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Makerspace Frontend
 
-## Getting Started
+A web application for managing Jæren Makerspace. This platform allows visitors to express interest in membership and check out what we've cooking!
 
-First, run the development server:
+## 📋 Features
+
+- **Landing Page**: Information about the makerspace
+- **Express Interest Form**: Collect potential member information
+- **Contact Us**: Contact form for misc stuff
+- **Makerspace Page**: Will be the place to check out what we provide. Machines, tools etc
+- **Events**: Information about events
+
+## 🚀 Technologies
+
+- **Next.js**
+- **React**
+- **TypeScript**
+- **Tailwind CSS**
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- Node.js 16.x or later
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/prognhaug/makerspace-frontend.git
+cd /makerspace-frontend
+```
+
+2. Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Start the development server
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open your browser and navigate to http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🎨 Design System
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The application uses a consistent design system with:
 
-## Learn More
+- **Typography**: Custom font sizes and weights for headings and paragraphs
+- **Colors**: Primary theme colors with various shades for different UI elements
+- **Components**: Reusable UI components like buttons and form inputs
 
-To learn more about Next.js, take a look at the following resources:
+# 📂 Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+makerspace-frontend/
+├── src/
+│ ├── app/
+│ │ ├── (public)/
+│ │ │ └── meld-interesse/ # Express interest page
+│ │ └── globals.css # Global styles and design tokens
+│ ├── components/
+│ │ └── ui/
+│ │ ├── Button.tsx # Button component
+│ │ └── forms/
+│ │ └── Input.tsx # Form input component
+├── public/
+├── tailwind.config.js # Tailwind configuration
+└── package.json
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🤝 Contributing
 
-## Deploy on Vercel
+1. Fork the repository
+2. Create a feature branch (git checkout -b feature/amazing-feature)
+3. Commit your changes (git commit -m 'Add some amazing feature')
+4. Push to the branch (git push origin feature/amazing-feature)
+5. Open a Pull Request
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built with ❤️ by the Jæren Makerspace Team
