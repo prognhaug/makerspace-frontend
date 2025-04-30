@@ -2,7 +2,7 @@ import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
 import { Suspense } from "react";
-import EditableSection from "@/components/content/sections/EditableSection";
+import StaticSection from "@/components/content/sections/StaticSection";
 
 type Section = {
   id: string;
@@ -80,16 +80,14 @@ async function PageContent() {
 
       {/* Display each section */}
       {content.sections.map((section: Section) => (
-        <EditableSection
+        <StaticSection
           key={section.id}
           id={section.id}
           title={section.title}
           content={section.content}
           imagePath={section.imagePath || "/pictures/textile2.png"}
           imageAlt={section.imageAlt || "Workshop at Jæren Makerspace"}
-          isEditing={false} // Always false for public view
           layout={section.layout || "text-left"}
-          onContentChange={() => {}} // No-op for public view
         />
       ))}
     </>
