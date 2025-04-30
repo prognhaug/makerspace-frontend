@@ -12,7 +12,7 @@
 
 # testing
 /coverage
-/api-mock
+src/temp/
 
 # next.js
 /.next/

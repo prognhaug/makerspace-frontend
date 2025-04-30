@@ -39,7 +39,7 @@ export default function EditLandingPage() {
       } catch (error) {
         console.error("Failed to fetch content:", error);
         // Fallback to mock data if API fails
-        import("@/api-mock/content/landing-page.json")
+        import("@/temp/api-mock/content/landing-page.json")
           .then((data) => {
             setContent(data.default);
           })
