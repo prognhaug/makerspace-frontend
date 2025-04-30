@@ -7,7 +7,7 @@ export async function GET() {
   try {
     const filePath = path.join(
       process.cwd(),
-      "src/api-mock/content/landing-page.json"
+      "src/temp/api-mock/content/landing-page.json"
     );
     const fileContent = fs.readFileSync(filePath, "utf8");
     const data = JSON.parse(fileContent);
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
     const data = await request.json();
     const filePath = path.join(
       process.cwd(),
-      "src/api-mock/content/landing-page.json"
+      "src/temp/api-mock/content/landing-page.json"
     );
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 
