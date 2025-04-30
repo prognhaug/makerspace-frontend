@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import EditableSection from "@/components/content/sections/EditableSection";
 import EditableHero from "@/components/content/hero/EditableHero";
 import { Section, PageContent } from "@/types/content";
+import Icon from "@/components/ui/Icon";
 
 interface EditLandingPageProps {
   isEditing: boolean;
@@ -262,19 +263,7 @@ export default function EditLandingPage({ isEditing }: EditLandingPageProps) {
             size="sm"
           >
             <span>Legg til seksjon</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M12 5v14M5 12h14" />
-            </svg>
+            <Icon name="plus" />
           </Button>
         )}
       </div>
@@ -302,21 +291,10 @@ export default function EditLandingPage({ isEditing }: EditLandingPageProps) {
             onClick={handleAddSection}
             variant="outline"
             className="flex items-center gap-2"
+            size="sm"
           >
-            <span>Legg til din første seksjon</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M12 5v14M5 12h14" />
-            </svg>
+            <span>Legg til seksjon</span>
+            <Icon name="plus" />
           </Button>
         </div>
       )}
