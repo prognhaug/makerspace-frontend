@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Button from "@/components/ui/Button";
 import toast from "react-hot-toast";
 import EditableSection from "@/components/content/sections/EditableSection";
+import EditableHero from "@/components/content/hero/EditableHero";
 import { Section, PageContent } from "@/types/content";
 
 interface EditLandingPageProps {
@@ -19,7 +20,7 @@ export default function EditLandingPage({ isEditing }: EditLandingPageProps) {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const response = await fetch("/api/content/landing-page");
+        const response = await fetch("/api/admin/mock");
         const data = await response.json();
 
         // Use a temporary type for incoming data
@@ -216,58 +217,16 @@ export default function EditLandingPage({ isEditing }: EditLandingPageProps) {
       )}
 
       {/* Preview/Edit Hero Section */}
-      <div className="mb-12 p-6 border rounded-lg bg-gray-50 text-text">
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">Overskrift</label>
-          {isEditing ? (
-            <input
-              type="text"
-              className="w-full px-4 py-2 border rounded"
-              value={content.hero.title}
-              onChange={(e) =>
-                handleContentChange("hero", "title", e.target.value)
-              }
-            />
-          ) : (
-            <h1 className="text-h1 font-bold">{content.hero.title}</h1>
-          )}
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Undertittel
-          </label>
-          {isEditing ? (
-            <input
-              type="text"
-              className="w-full px-4 py-2 border rounded"
-              value={content.hero.subtitle}
-              onChange={(e) =>
-                handleContentChange("hero", "subtitle", e.target.value)
-              }
-            />
-          ) : (
-            <h2 className="text-h3">{content.hero.subtitle}</h2>
-          )}
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Beskrivelse
-          </label>
-          {isEditing ? (
-            <textarea
-              rows={4}
-              className="w-full px-4 py-2 border rounded"
-              value={content.hero.description}
-              onChange={(e) =>
-                handleContentChange("hero", "description", e.target.value)
-              }
-            />
-          ) : (
-            <p className="text-p1">{content.hero.description}</p>
-          )}
-        </div>
+      <div className="mb-12">
+        <EditableHero
+          title={content.hero.title}
+          subtitle={content.hero.subtitle}
+          description={content.hero.description}
+          imagePath="/pictures/textile2.png"
+          imageAlt="Jæren Makerspace"
+          isEditing={isEditing}
+          onContentChange={handleContentChange}
+        />
       </div>
 
       {/* Preview/Edit Content Sections */}

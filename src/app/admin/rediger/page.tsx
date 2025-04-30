@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Button from "@/components/ui/Button";
 import EditLandingPage from "@/components/admin/pages/EditLandingPage";
 
@@ -16,7 +15,6 @@ const pageNames: Record<string, string> = {
 };
 
 export default function AdminDashboard() {
-  const router = useRouter();
   const [selectedPage, setSelectedPage] = useState<EditablePage>(null);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -54,7 +52,7 @@ export default function AdminDashboard() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold text-gray-800">
-              Admin Dashboard
+              Rediger innhold
             </h1>
 
             <div className="flex items-center gap-4">
@@ -63,11 +61,13 @@ export default function AdminDashboard() {
                 <select
                   value={selectedPage || ""}
                   onChange={handlePageChange}
-                  className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full py-2 px-3 border border-gray-300 bg-white text-text rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
                 >
-                  <option value="">Velg side</option>
+                  <option value="" className="text-text">
+                    Velg side
+                  </option>
                   {Object.entries(pageNames).map(([key, name]) => (
-                    <option key={key} value={key}>
+                    <option key={key} value={key} className="text-text">
                       {name}
                     </option>
                   ))}
@@ -75,10 +75,6 @@ export default function AdminDashboard() {
               </div>
 
               {/* Action buttons */}
-              <Button variant="outline" onClick={() => router.push("/")}>
-                Avbryt
-              </Button>
-
               {selectedPage && (
                 <Button
                   onClick={() => setIsEditing(!isEditing)}

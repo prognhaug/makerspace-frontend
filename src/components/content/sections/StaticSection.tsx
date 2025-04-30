@@ -16,14 +16,21 @@ export default function StaticSection({
     <div className="w-full bg-primary-faint py-24">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Text Column with conditional text alignment */}
           <div
-            className={`flex flex-col space-y-6 text-text ${textColumnOrder}`}
+            className={`flex flex-col space-y-6 text-text ${textColumnOrder} text-left`}
           >
             <h2 className="font-poppins text-3xl font-bold">{title}</h2>
             <p className="font-work-sans">{content}</p>
           </div>
+
+          {/* Image Column with conditional justification */}
           <div
-            className={`flex justify-center md:justify-end ${imageColumnOrder}`}
+            className={`flex ${
+              layout === "text-left"
+                ? "justify-center md:justify-end"
+                : "justify-center md:justify-start"
+            } ${imageColumnOrder}`}
           >
             <Image
               src={imagePath || "/pictures/textile2.png"}

@@ -36,20 +36,20 @@ export default function EditableSection({
       {isEditing && isHovered && (
         <div className="absolute top-2 right-2 bg-white rounded shadow px-3 py-2 z-10 flex gap-2">
           <button
-            className={`px-2 py-1 rounded text-sm ${
+            className={`px-2 py-1 rounded text-sm border ${
               layout === "text-left"
-                ? "bg-primary-brown text-white"
-                : "bg-gray-100"
+                ? "bg-primary-brown text-white border-primary-brown"
+                : "bg-white text-primary-brown border-primary-brown"
             }`}
             onClick={() => onLayoutChange(id, "text-left")}
           >
             Text Left
           </button>
           <button
-            className={`px-2 py-1 rounded text-sm ${
+            className={`px-2 py-1 rounded text-sm border ${
               layout === "text-right"
-                ? "bg-primary-brown text-white"
-                : "bg-gray-100"
+                ? "bg-primary-brown text-white border-primary-brown"
+                : "bg-white text-primary-brown border-primary-brown"
             }`}
             onClick={() => onLayoutChange(id, "text-right")}
           >
@@ -62,7 +62,7 @@ export default function EditableSection({
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Text Column */}
           <div
-            className={`flex flex-col space-y-6 text-text ${textColumnOrder}`}
+            className={`flex flex-col space-y-6 text-text ${textColumnOrder} text-left`}
           >
             {isEditing ? (
               <input
@@ -89,7 +89,11 @@ export default function EditableSection({
 
           {/* Image Column */}
           <div
-            className={`flex justify-center md:justify-end ${imageColumnOrder}`}
+            className={`flex ${
+              layout === "text-left"
+                ? "justify-center md:justify-end"
+                : "justify-center md:justify-start"
+            } ${imageColumnOrder}`}
           >
             <Image
               src={imagePath || "/pictures/textile2.png"}
