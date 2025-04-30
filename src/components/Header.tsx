@@ -48,6 +48,17 @@ export default function Header() {
                   </Button>
                 </Link>
               </li>
+              <li>
+                <Link href="/admin/rediger" className="inline-block">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="cursor-pointer w-[120.44px] h-[34.66px] px-0"
+                  >
+                    Rediger
+                  </Button>
+                </Link>
+              </li>
             </ul>
           </nav>
         </div>
