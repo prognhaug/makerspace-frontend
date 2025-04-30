@@ -144,6 +144,28 @@ export default function EditLandingPage({ isEditing }: EditLandingPageProps) {
     }
   };
 
+  const handleDeleteSection = (sectionId: string) => {
+    if (!content) return;
+
+    // Confirm deletion
+    if (
+      window.confirm(
+        "Er du sikker på at du vil slette denne seksjonen? Dette kan ikke angres."
+      )
+    ) {
+      // Filter out the section with the given ID
+      setContent({
+        ...content,
+        sections: content.sections.filter(
+          (section) => section.id !== sectionId
+        ),
+      });
+
+      // Show success toast
+      toast.success("Seksjon slettet");
+    }
+  };
+
   const handleContentChange = (
     sectionId: string,
     field: string,
@@ -269,6 +291,7 @@ export default function EditLandingPage({ isEditing }: EditLandingPageProps) {
           layout={section.layout || "text-left"}
           onContentChange={handleContentChange}
           onLayoutChange={handleLayoutChange}
+          onDelete={handleDeleteSection}
         />
       ))}
 
