@@ -2,12 +2,16 @@ import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
 import { Suspense } from "react";
+import EditableSection from "@/components/content/sections/EditableSection";
 
-interface Section {
+type Section = {
   id: string;
   title: string;
   content: string;
-}
+  layout: "text-left" | "text-right";
+  imagePath: string;
+  imageAlt: string;
+};
 
 async function PageContent() {
   // Fetch content from the API
@@ -76,30 +80,17 @@ async function PageContent() {
 
       {/* Display each section */}
       {content.sections.map((section: Section) => (
-        <div key={section.id} className="w-full bg-primary-faint py-24">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              {/* Left Column with Text */}
-              <div className="flex flex-col space-y-6 text-text">
-                <h2 className="font-poppins text-3xl font-bold">
-                  {section.title}
-                </h2>
-                <p className="font-work-sans">{section.content}</p>
-              </div>
-
-              {/* Right Column with Image */}
-              <div className="flex justify-center md:justify-end">
-                <Image
-                  src="/pictures/textile2.png"
-                  alt="Workshop at Jæren Makerspace"
-                  width={500}
-                  height={500}
-                  className="object-contain"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+        <EditableSection
+          key={section.id}
+          id={section.id}
+          title={section.title}
+          content={section.content}
+          imagePath={section.imagePath || "/pictures/textile2.png"}
+          imageAlt={section.imageAlt || "Workshop at Jæren Makerspace"}
+          isEditing={false} // Always false for public view
+          layout={section.layout || "text-left"}
+          onContentChange={() => {}} // No-op for public view
+        />
       ))}
     </>
   );

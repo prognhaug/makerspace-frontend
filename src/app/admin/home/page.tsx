@@ -4,11 +4,16 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Button from "@/components/ui/Button";
 import toast from "react-hot-toast";
+import EditableSection from "@/components/content/sections/EditableSection";
 
+// Update your PageContent type
 type Section = {
   id: string;
   title: string;
   content: string;
+  layout: "text-left" | "text-right";
+  imagePath: string;
+  imageAlt: string;
 };
 
 type PageContent = {
@@ -80,34 +85,34 @@ export default function EditLandingPage() {
     }
   };
 
-  const handleRemoveSection = (sectionId: string) => {
-    if (!content) return;
+  // const handleRemoveSection = (sectionId: string) => {
+  //   if (!content) return;
 
-    // Filter out the section with the matching ID
-    setContent({
-      ...content,
-      sections: content.sections.filter((section) => section.id !== sectionId),
-    });
+  //   // Filter out the section with the matching ID
+  //   setContent({
+  //     ...content,
+  //     sections: content.sections.filter((section) => section.id !== sectionId),
+  //   });
 
-    toast.success("Seksjon fjernet");
-  };
+  //   toast.success("Seksjon fjernet");
+  // };
 
-  const handleInputFocus = (
-    sectionId: string,
-    field: string,
-    value: string
-  ) => {
-    if (!content) return;
+  // const handleInputFocus = (
+  //   sectionId: string,
+  //   field: string,
+  //   value: string
+  // ) => {
+  //   if (!content) return;
 
-    // Check if the content is the default text
-    if (
-      (field === "title" && value === "Ny seksjon") ||
-      (field === "content" && value === "Legg til innhold her...")
-    ) {
-      // Clear the default text when focused
-      handleContentChange(sectionId, field, "");
-    }
-  };
+  //   // Check if the content is the default text
+  //   if (
+  //     (field === "title" && value === "Ny seksjon") ||
+  //     (field === "content" && value === "Legg til innhold her...")
+  //   ) {
+  //     // Clear the default text when focused
+  //     handleContentChange(sectionId, field, "");
+  //   }
+  // };
 
   const handleSave = async () => {
     setIsSaving(true);
@@ -161,6 +166,23 @@ export default function EditLandingPage() {
         }),
       });
     }
+  };
+
+  const handleLayoutChange = (
+    sectionId: string,
+    layout: "text-left" | "text-right"
+  ) => {
+    if (!content) return;
+
+    setContent({
+      ...content,
+      sections: content.sections.map((section) => {
+        if (section.id === sectionId) {
+          return { ...section, layout };
+        }
+        return section;
+      }),
+    });
   };
 
   if (isLoading) {
@@ -290,77 +312,18 @@ export default function EditLandingPage() {
         </div>
 
         {content.sections.map((section) => (
-          <div
+          <EditableSection
             key={section.id}
-            className="mb-8 p-6 border rounded-lg text-text relative"
-          >
-            {isEditing && (
-              <button
-                onClick={() => handleRemoveSection(section.id)}
-                className="absolute top-3 right-3 text-red-500 p-1 rounded-full hover:bg-red-50"
-                title="Fjern seksjon"
-                type="button"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-                  <line x1="10" y1="11" x2="10" y2="17" />
-                  <line x1="14" y1="11" x2="14" y2="17" />
-                </svg>
-              </button>
-            )}
-
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Seksjon tittel
-              </label>
-              {isEditing ? (
-                <input
-                  type="text"
-                  className="w-full px-4 py-2 border rounded"
-                  value={section.title}
-                  onChange={(e) =>
-                    handleContentChange(section.id, "title", e.target.value)
-                  }
-                  onFocus={() =>
-                    handleInputFocus(section.id, "title", section.title)
-                  }
-                />
-              ) : (
-                <h3 className="text-h3 font-medium">{section.title}</h3>
-              )}
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Innhold
-              </label>
-              {isEditing ? (
-                <textarea
-                  rows={6}
-                  className="w-full px-4 py-2 border rounded"
-                  value={section.content}
-                  onChange={(e) =>
-                    handleContentChange(section.id, "content", e.target.value)
-                  }
-                  onFocus={() =>
-                    handleInputFocus(section.id, "content", section.content)
-                  }
-                />
-              ) : (
-                <p className="text-p1">{section.content}</p>
-              )}
-            </div>
-          </div>
+            id={section.id}
+            title={section.title}
+            content={section.content}
+            imagePath={section.imagePath || "/pictures/textile2.png"}
+            imageAlt={section.imageAlt || "Workshop at Jæren Makerspace"}
+            isEditing={isEditing}
+            layout={section.layout || "text-left"}
+            onContentChange={handleContentChange}
+            onLayoutChange={handleLayoutChange}
+          />
         ))}
 
         {/* Show 'Add first section' button if no sections exist */}
