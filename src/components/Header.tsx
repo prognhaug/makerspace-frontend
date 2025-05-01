@@ -78,43 +78,46 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <nav className="md:hidden mt-4 bg-white rounded-lg shadow-lg p-4 space-y-3 z-50 relative">
-            <MobileLink href="/" setMenuOpen={setMenuOpen}>
-              Hjem
-            </MobileLink>
-            <MobileLink href="/makerspace" setMenuOpen={setMenuOpen}>
-              Makerspace
-            </MobileLink>
-            <MobileLink href="/arrangementer" setMenuOpen={setMenuOpen}>
-              Events
-            </MobileLink>
-            <MobileLink href="/om-oss" setMenuOpen={setMenuOpen}>
-              Om oss
-            </MobileLink>
-            <MobileLink href="/meld-interesse" setMenuOpen={setMenuOpen}>
-              Meld interesse
-            </MobileLink>
-            <div className="pt-2">
-              <Link
-                href="/ta-kontakt"
-                onClick={() => setMenuOpen(false)}
-                className="block mb-3"
-              >
-                <Button variant="outline" size="sm" className="w-full">
-                  Ta kontakt
-                </Button>
-              </Link>
-              <Link
-                href="/admin/rediger"
-                onClick={() => setMenuOpen(false)}
-                className="block"
-              >
-                <Button variant="outline" size="sm" className="w-full">
-                  Rediger
-                </Button>
-              </Link>
-            </div>
-          </nav>
+          <>
+            {/* Navigation panel */}
+            <nav className="fixed top-[72px] left-4 right-4 bg-white rounded-lg shadow-lg p-4 space-y-3 z-50 max-h-[80vh] overflow-y-auto">
+              <MobileLink href="/" setMenuOpen={setMenuOpen}>
+                Hjem
+              </MobileLink>
+              <MobileLink href="/makerspace" setMenuOpen={setMenuOpen}>
+                Makerspace
+              </MobileLink>
+              <MobileLink href="/arrangementer" setMenuOpen={setMenuOpen}>
+                Events
+              </MobileLink>
+              <MobileLink href="/om-oss" setMenuOpen={setMenuOpen}>
+                Om oss
+              </MobileLink>
+              <MobileLink href="/meld-interesse" setMenuOpen={setMenuOpen}>
+                Meld interesse
+              </MobileLink>
+              <div className="pt-2">
+                <Link
+                  href="/ta-kontakt"
+                  onClick={() => setMenuOpen(false)}
+                  className="block mb-3"
+                >
+                  <Button variant="outline" size="sm" className="w-full">
+                    Ta kontakt
+                  </Button>
+                </Link>
+                <Link
+                  href="/admin/rediger"
+                  onClick={() => setMenuOpen(false)}
+                  className="block"
+                >
+                  <Button variant="outline" size="sm" className="w-full">
+                    Rediger
+                  </Button>
+                </Link>
+              </div>
+            </nav>
+          </>
         )}
       </div>
     </header>
