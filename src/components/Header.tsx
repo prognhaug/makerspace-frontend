@@ -4,10 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import Button from "@/components/ui/Button";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 
 export default function Header() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <header
@@ -30,7 +33,8 @@ export default function Header() {
             </span>
           </Link>
 
-          <nav>
+          {/* Desktop Nav */}
+          <nav className="hidden md:block">
             <ul className="flex items-center space-x-8">
               <NavLink href="/">Hjem</NavLink>
               <NavLink href="/makerspace">Makerspace</NavLink>
@@ -61,7 +65,57 @@ export default function Header() {
               </li>
             </ul>
           </nav>
+
+          {/* Hamburger Icon */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden text-text focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <nav className="md:hidden mt-4 bg-white rounded-lg shadow-lg p-4 space-y-3 z-50 relative">
+            <MobileLink href="/" setMenuOpen={setMenuOpen}>
+              Hjem
+            </MobileLink>
+            <MobileLink href="/makerspace" setMenuOpen={setMenuOpen}>
+              Makerspace
+            </MobileLink>
+            <MobileLink href="/arrangementer" setMenuOpen={setMenuOpen}>
+              Events
+            </MobileLink>
+            <MobileLink href="/om-oss" setMenuOpen={setMenuOpen}>
+              Om oss
+            </MobileLink>
+            <MobileLink href="/meld-interesse" setMenuOpen={setMenuOpen}>
+              Meld interesse
+            </MobileLink>
+            <div className="pt-2">
+              <Link
+                href="/ta-kontakt"
+                onClick={() => setMenuOpen(false)}
+                className="block mb-3"
+              >
+                <Button variant="outline" size="sm" className="w-full">
+                  Ta kontakt
+                </Button>
+              </Link>
+              <Link
+                href="/admin/rediger"
+                onClick={() => setMenuOpen(false)}
+                className="block"
+              >
+                <Button variant="outline" size="sm" className="w-full">
+                  Rediger
+                </Button>
+              </Link>
+            </div>
+          </nav>
+        )}
       </div>
     </header>
   );
@@ -90,5 +144,30 @@ function NavLink({
         {children}
       </Link>
     </li>
+  );
+}
+
+function MobileLink({
+  href,
+  children,
+  setMenuOpen,
+}: {
+  href: string;
+  children: React.ReactNode;
+  setMenuOpen: (open: boolean) => void;
+}) {
+  const pathname = usePathname();
+  const isActive = pathname === href;
+
+  return (
+    <Link
+      href={href}
+      onClick={() => setMenuOpen(false)}
+      className={`block py-2 text-base font-medium text-text hover:text-primary ${
+        isActive ? "font-bold" : ""
+      }`}
+    >
+      {children}
+    </Link>
   );
 }
