@@ -50,14 +50,14 @@ export default function AdminDashboard() {
       {/* Admin Header */}
       <header className="bg-white border-b shadow-sm">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center space-y-4 md:space-y-0">
             <h1 className="text-2xl font-bold text-gray-800">
               Rediger innhold
             </h1>
 
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
               {/* Page selector dropdown */}
-              <div className="w-64">
+              <div className="w-full sm:w-64">
                 <select
                   value={selectedPage || ""}
                   onChange={handlePageChange}
@@ -79,6 +79,7 @@ export default function AdminDashboard() {
                 <Button
                   onClick={() => setIsEditing(!isEditing)}
                   variant={isEditing ? "outline" : "default"}
+                  className="w-full sm:w-auto"
                 >
                   {isEditing ? "Avbryt redigering" : "Rediger innhold"}
                 </Button>
