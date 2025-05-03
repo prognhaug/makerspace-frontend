@@ -98,20 +98,20 @@ export function EditableSectionBlock({
           className="w-full lg:w-1/2 p-4 relative"
           onMouseEnter={(e) => showElementToolbar("image", e)}
         >
-          {imagePath && !imageError ? (
-            <div className="relative aspect-video rounded-lg overflow-hidden">
+          {imagePath && imagePath.trim() !== "" && !imageError ? (
+            <div className="relative aspect-video rounded-lg overflow-hidden group">
               <Image
-                src={imagePath}
+                src={imagePath || "/pictures/textile2.png"}
                 alt={imageAlt || "Section image"}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 style={{ objectFit: "cover" }}
                 onError={handleImageError}
               />
-              {/* Image hover overlay */}
-              <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-opacity flex items-center justify-center">
+              {/* Image hover overlay - using group hover instead */}
+              <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity flex items-center justify-center">
                 <button
-                  className="p-2 bg-white rounded-full shadow-md opacity-0 hover:opacity-100"
+                  className="p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100"
                   onClick={(e) => {
                     e.stopPropagation();
                     showElementToolbar("image-upload", e);
