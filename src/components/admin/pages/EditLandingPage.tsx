@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from "react";
 import Button from "@/components/ui/Button";
 import toast from "react-hot-toast";
-import EditableSection from "@/components/content/sections/EditableSection";
-import EditableHero from "@/components/content/hero/EditableHero";
+import EditableSection from "@/components/blocks/section/EditableSection";
+import EditableHero from "@/components/blocks/hero/EditableHero";
 import { Section, PageContent } from "@/types/content";
 import Icon from "@/components/ui/Icon";
 
