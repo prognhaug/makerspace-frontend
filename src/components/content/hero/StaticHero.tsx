@@ -31,7 +31,7 @@ export default function StaticHero({
           />
         </div>
 
-        <div className="flex flex-col space-y-8 text-text">
+        <div className="flex flex-col space-y-8 text-default">
           <h1 className="font-poppins text-4xl md:text-5xl font-bold">
             {title}
           </h1>

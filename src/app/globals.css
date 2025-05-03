@@ -79,7 +79,7 @@
   --color-secondary-yellow: #e4b763;
 
   /* Text color */
-  --color-text: #181212;
+  --color-default: #181212;
 }
 
 body {

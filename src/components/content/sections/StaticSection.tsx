@@ -18,7 +18,7 @@ export default function StaticSection({
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Text Column with conditional text alignment */}
           <div
-            className={`flex flex-col space-y-6 text-text ${textColumnOrder} text-left`}
+            className={`flex flex-col space-y-6 text-default ${textColumnOrder} text-left`}
           >
             <h2 className="font-poppins text-3xl font-bold">{title}</h2>
             <p className="font-work-sans">{content}</p>

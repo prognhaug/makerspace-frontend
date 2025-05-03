@@ -1,12 +1,16 @@
-"use client";
-
-import { useState } from "react";
-import Image from "next/image";
-import { Section } from "@/types/content";
+import React from "react";
+import EditableText from "@/components/editor/EditableText";
+import EditableImage from "@/components/editor/EditableImage";
 import Icon from "@/components/ui/Icon";
 
-interface EditableSectionProps extends Section {
+interface EditableSectionProps {
+  id: string;
+  title: string;
+  content: string;
+  imagePath: string;
+  imageAlt: string;
   isEditing: boolean;
+  layout: "text-left" | "text-right";
   onContentChange: (id: string, field: string, value: string) => void;
   onLayoutChange: (id: string, layout: "text-left" | "text-right") => void;
   onDelete: (id: string) => void;
@@ -18,100 +22,89 @@ export default function EditableSection({
   content,
   imagePath,
   imageAlt,
-  layout,
   isEditing,
+  layout,
   onContentChange,
   onLayoutChange,
   onDelete,
 }: EditableSectionProps) {
-  const [isHovered, setIsHovered] = useState(false);
-  const textColumnOrder = layout === "text-left" ? "order-first" : "order-last";
-  const imageColumnOrder =
-    layout === "text-left" ? "order-last" : "order-first";
-
   return (
-    <div
-      className="w-full bg-primary-faint py-10 my-6 rounded-lg relative"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* Edit overlay UI */}
-      {isEditing && isHovered && (
-        <div className="absolute top-2 right-2 bg-white rounded shadow px-3 py-2 z-10 flex gap-2">
+    <div className="mb-16 relative bg-primary-faint">
+      {/* Edit controls */}
+      {isEditing && (
+        <div className="absolute top-0 right-0 flex space-x-2 z-10">
+          {/* Layout controls */}
+          <div className="flex space-x-1">
+            <button
+              className={`p-2 rounded ${
+                layout === "text-left" ? "bg-primary text-white" : "bg-gray-100"
+              }`}
+              onClick={() => onLayoutChange(id, "text-left")}
+              title="Text on left"
+            >
+              Text left
+            </button>
+            <button
+              className={`p-2 rounded ${
+                layout === "text-right"
+                  ? "bg-primary text-white"
+                  : "bg-gray-100"
+              }`}
+              onClick={() => onLayoutChange(id, "text-right")}
+              title="Text on right"
+            >
+              Text right
+            </button>
+          </div>
+
+          {/* Delete button */}
           <button
-            className={`px-2 py-1 rounded text-sm border ${
-              layout === "text-left"
-                ? "bg-primary-brown text-white border-primary-brown"
-                : "bg-white text-primary-brown border-primary-brown"
-            }`}
-            onClick={() => onLayoutChange(id, "text-left")}
-          >
-            Text Left
-          </button>
-          <button
-            className={`px-2 py-1 rounded text-sm border ${
-              layout === "text-right"
-                ? "bg-primary-brown text-white border-primary-brown"
-                : "bg-white text-primary-brown border-primary-brown"
-            }`}
-            onClick={() => onLayoutChange(id, "text-right")}
-          >
-            Text Right
-          </button>
-          <button
-            className="px-2 py-1 rounded text-sm border border-red-500 bg-white text-red-500 ml-2"
+            className="p-2 bg-red-100 text-red-500 rounded hover:bg-red-200"
             onClick={() => onDelete(id)}
+            title="Delete section"
           >
-            <Icon name="trash" />
+            <Icon name="trash" size="sm" />
           </button>
         </div>
       )}
 
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Text Column */}
-          <div
-            className={`flex flex-col space-y-6 text-text ${textColumnOrder} text-left`}
-          >
-            {isEditing ? (
-              <input
-                type="text"
-                className="font-poppins text-3xl font-bold w-full px-4 py-2 border rounded"
-                value={title}
-                onChange={(e) => onContentChange(id, "title", e.target.value)}
-              />
-            ) : (
-              <h2 className="font-poppins text-3xl font-bold">{title}</h2>
-            )}
+      {/* Section content */}
+      <div
+        className={`flex flex-wrap items-center ${
+          layout === "text-left" ? "flex-row" : "flex-row-reverse"
+        }`}
+      >
+        {/* Text content */}
+        <div className="w-full lg:w-1/2 p-4">
+          <EditableText
+            id={id}
+            value={title}
+            variant="heading"
+            isEditing={isEditing}
+            onChange={onContentChange}
+            fieldName="title"
+            className="mb-4"
+          />
 
-            {isEditing ? (
-              <textarea
-                rows={6}
-                className="font-work-sans w-full px-4 py-2 border rounded"
-                value={content}
-                onChange={(e) => onContentChange(id, "content", e.target.value)}
-              />
-            ) : (
-              <p className="font-work-sans">{content}</p>
-            )}
-          </div>
+          <EditableText
+            id={id}
+            value={content}
+            variant="paragraph"
+            isEditing={isEditing}
+            onChange={onContentChange}
+            fieldName="content"
+          />
+        </div>
 
-          {/* Image Column */}
-          <div
-            className={`flex ${
-              layout === "text-left"
-                ? "justify-center md:justify-end"
-                : "justify-center md:justify-start"
-            } ${imageColumnOrder}`}
-          >
-            <Image
-              src={imagePath || "/pictures/textile2.png"}
-              alt={imageAlt || "Workshop at Jæren Makerspace"}
-              width={500}
-              height={500}
-              className="object-contain"
-            />
-          </div>
+        {/* Image */}
+        <div className="w-full lg:w-1/2 p-4">
+          <EditableImage
+            id={id}
+            src={imagePath}
+            alt={imageAlt}
+            isEditing={isEditing}
+            onChange={onContentChange}
+          />
         </div>
       </div>
     </div>

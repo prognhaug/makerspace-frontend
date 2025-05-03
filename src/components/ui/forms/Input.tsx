@@ -9,7 +9,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { X } from "lucide-react";
 
 const inputVariants = cva(
-  "w-full px-4 py-3 rounded bg-white border-none text-text focus:outline-none focus:ring-2 focus:ring-primary-light font-work-sans",
+  "w-full px-4 py-3 rounded bg-white border-none text-default focus:outline-none focus:ring-2 focus:ring-primary-light font-work-sans",
   {
     variants: {
       variant: {
@@ -51,7 +51,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="block text-text mb-1 font-work-sans"
+            className="block text-default mb-1 font-work-sans"
           >
             {label}
           </label>

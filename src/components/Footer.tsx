@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="font-poppins w-full bg-primary-warm text-text py-12">
+    <footer className="font-poppins w-full bg-primary-warm text-default py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo & Brand Column */}

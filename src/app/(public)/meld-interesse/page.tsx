@@ -47,10 +47,10 @@ export default function ExpressInterest() {
     <div className="min-h-screen bg-primary-faint py-16 px-4">
       <div className="max-w-md mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-size-h2 font-bold text-text mb-4">
+          <h1 className="text-size-h2 font-bold text-default mb-4">
             MELD INTERESSE
           </h1>
-          <p className="text-text font-work-sans text-size-p1">
+          <p className="text-default font-work-sans text-size-p1">
             Meld interesse og få mail når du kan melde deg inn.
           </p>
         </div>

@@ -61,13 +61,13 @@ export default function AdminDashboard() {
                 <select
                   value={selectedPage || ""}
                   onChange={handlePageChange}
-                  className="w-full py-2 px-3 border border-gray-300 bg-white text-text rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full py-2 px-3 border border-gray-300 bg-white text-default rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
                 >
-                  <option value="" className="text-text">
+                  <option value="" className="text-default">
                     Velg side
                   </option>
                   {Object.entries(pageNames).map(([key, name]) => (
-                    <option key={key} value={key} className="text-text">
+                    <option key={key} value={key} className="text-default">
                       {name}
                     </option>
                   ))}

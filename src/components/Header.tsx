@@ -14,7 +14,7 @@ export default function Header() {
 
   return (
     <header
-      className={`font-poppins w-full text-text py-4 ${
+      className={`font-poppins w-full text-default py-4 ${
         isHomePage ? "bg-secondary-beige" : "bg-primary-faint"
       }`}
     >
@@ -69,7 +69,7 @@ export default function Header() {
           {/* Hamburger Icon */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden text-text focus:outline-none"
+            className="md:hidden text-default focus:outline-none"
             aria-label="Toggle menu"
           >
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -166,7 +166,7 @@ function MobileLink({
     <Link
       href={href}
       onClick={() => setMenuOpen(false)}
-      className={`block py-2 text-base font-medium text-text hover:text-primary ${
+      className={`block py-2 text-base font-medium text-default hover:text-primary ${
         isActive ? "font-bold" : ""
       }`}
     >

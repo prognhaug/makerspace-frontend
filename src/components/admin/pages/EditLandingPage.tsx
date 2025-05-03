@@ -254,7 +254,7 @@ export default function EditLandingPage({ isEditing }: EditLandingPageProps) {
 
       {/* Preview/Edit Content Sections */}
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-h3 font-bold text-text">Seksjoner</h2>
+        <h2 className="text-h3 font-bold text-default">Seksjoner</h2>
         {isEditing && (
           <Button
             onClick={handleAddSection}
